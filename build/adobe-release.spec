@@ -1,6 +1,6 @@
 Name:       adobe-release
-Version:    1.0
-Release:    2%{?dist}
+Version:    1.2
+Release:    1%{?dist}
 Summary:    Adobe repository configuration
 
 Group:      System Environment/Base
@@ -14,7 +14,9 @@ Provides:   adobe-release-x86_64
 Obsoletes:  adobe-release-i386
 Obsoletes:  adobe-release-x86_64
 
-BuildArch: noarch
+# In order to provide 32bit flash to 64bit systems,
+# we need to split these packages again
+#BuildArch: noarch
 
 %description
 Adobe Linux repository configuration.
@@ -25,7 +27,11 @@ Adobe Linux repository configuration.
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d -m 755 $RPM_BUILD_ROOT/etc/yum.repos.d
-install -m 644 adobe.repo $RPM_BUILD_ROOT/etc/yum.repos.d/
+%ifarch x86_64
+install -m 644 adobe.repo-64 $RPM_BUILD_ROOT/etc/yum.repos.d/adobe.repo
+%else
+install -m 644 adobe.repo $RPM_BUILD_ROOT/etc/yum.repos.d/adobe.repo
+%endif
 
 install -d -m 755 $RPM_BUILD_ROOT/etc/pki/rpm-gpg
 install -m 644 RPM-GPG-KEY-adobe $RPM_BUILD_ROOT/etc/pki/rpm-gpg/
@@ -41,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 /etc/yum.repos.d/adobe.repo
 
 %changelog
+* Sun Feb 7 2013 Chris Smart <csmart@kororaproject.org> - 1.2-1
+- Split out packages into archs, so that users can install 32bit flash on 64bit systems.
+
 * Sun May 20 2012 Chris Smart <chris@kororaa.org> - 1.1
 - Small changes to spec file, update for Kororaa 17.
 
