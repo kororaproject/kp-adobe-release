@@ -1,6 +1,6 @@
 Name:       adobe-release
 Version:    1.2
-Release:    2%{?dist}
+Release:    2%{?dist}.1
 Summary:    Adobe repository configuration
 
 Group:      System Environment/Base
@@ -44,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc
 /etc/pki/rpm-gpg/RPM-GPG-KEY-adobe
-/etc/yum.repos.d/adobe.repo
+%config(noreplace) /etc/yum.repos.d/adobe.repo
 
 %changelog
 * Fri Sep 6 2013 Chris Smart <csmart@kororaproject.org> - 1.2-2
