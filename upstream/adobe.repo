@@ -1,7 +1,7 @@
 [adobe]
 name=Adobe
 baseurl=http://linuxdownload.adobe.com/linux/$basearch/
-enabled=1
+enabled=0
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-adobe
 exclude=AdobeReader* adobe-release*

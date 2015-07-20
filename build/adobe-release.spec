@@ -1,6 +1,6 @@
 Name:       adobe-release
 Version:    1.2
-Release:    2%{?dist}.1
+Release:    3%{?dist}
 Summary:    Adobe repository configuration
 
 Group:      System Environment/Base
@@ -47,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) /etc/yum.repos.d/adobe.repo
 
 %changelog
+* Mon Jul 20 2015 Chris Smart <csmart@kororaproject.org> - 1.2-3
+- Disable repository by default, we don't want flash any more.
+
 * Fri Sep 6 2013 Chris Smart <csmart@kororaproject.org> - 1.2-2
 - Disable 32bit flash in 64bit repo by default
 
